@@ -18,15 +18,14 @@ function displaySelection() {
     const selectElement = document.getElementById("exercises");
     const displayArea = document.getElementById("displayArea");
 
-    const selectedValue = selectElement.value; 
+    const selectedValue = selectElement.value; // simpler than using selectedIndex
     const exercise = exercises.find(ex => ex.name === selectedValue);
 
     if (exercise) {
         displayArea.innerHTML = `
             <h3>${exercise.name}</h3>
             <img src="${exercise.image}" alt="${exercise.name}" width="200">
-            <p>MET: ${exercise.met}</p>
-            <p>Reps per minute: ${exercise.repsPerMinute}</p>
+            
         `;
     }
 }
