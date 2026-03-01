@@ -16,38 +16,31 @@ const exercises = [
 ];
 
 
-function openTab(event, tabName){
-      var i;
-      
+function openTab(event, tabName) {
+    const tabcontent = document.getElementsByClassName("tabcontent");
+    const tablinks = document.getElementsByClassName("tablinks");
 
-      const tabcontent = document.getElementsByClassName("tabcontent");
-      const tablinks = document.getElementsByClassName("tablinks");
-      for(i = 0; i < tabcontent.length; i++){
-          tabcontent[i].style.display = "none";
-      }
+    for (let i = 0; i < tabcontent.length; i++) tabcontent[i].style.display = "none";
+    for (let i = 0; i < tablinks.length; i++) tablinks[i].className = tablinks[i].className.replace(" active", "");
 
-      
-      for(i = 0; i <tablinks.length; i++){
-          tablinks[i].className = tablinks[i].className.replace(" active", "");
-
-      }
-      document.getElementById(tabName).style.display = "block";
-      event.currentTarget.className += " active";
+    document.getElementById(tabName).style.display = "block";
+    event.currentTarget.className += " active";
 }
 
-  window.onload = function(){
-    document.getElementById("defaultOpen").click();
+window.addEventListener("DOMContentLoaded", function() {
+    // Open default tab
+    const defaultTab = document.getElementById("defaultOpen");
+    if (defaultTab) defaultTab.click();
 
-    const dropdown = document.getElementById("exercises")
-  exercises.forEach((exercise) => {
-    const option = document.createElement("option");
-    option.value = exercise.name;
-    option.text = exercise.name;
-    dropdown.appendChild(option);
-
+    // Populate dropdown
+    const dropdown = document.getElementById("exercises");
+    exercises.forEach(ex => {
+        const option = document.createElement("option");
+        option.value = ex.name;
+        option.text = ex.name;
+        dropdown.appendChild(option);
+    });
 });
-}
-
 
   
 
