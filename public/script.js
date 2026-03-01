@@ -17,19 +17,18 @@ const exercises = [
 function displaySelection() {
     const selectElement = document.getElementById("exercises");
     const displayArea = document.getElementById("displayArea");
+    const displayText = document.getElementById("displayText");
 
     const selectedValue = selectElement.value; // simpler than using selectedIndex
     const exercise = exercises.find(ex => ex.name === selectedValue);
 
     if (exercise) {
-        displayArea.innerHTML = `
-            <h3>${exercise.name}</h3>
-            <img src="${exercise.image}" alt="${exercise.name}" width="200">
-            
-        `;
+
+        displayArea.textContent  = 'You selected: ${selectedValue}';
+        
+        
     }
 }
-
 
 function openTab(event, tabName) {
     const tabcontent = document.getElementsByClassName("tabcontent");
