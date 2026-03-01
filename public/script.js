@@ -17,25 +17,27 @@ const exercises = [
 
 
 function openTab(event, tabName){
-      var i, tabcontent, tablinks;
+      var i;
+      
 
-      tabcontent = document.getElementsByClassName("tabcontent");
+      const tabcontent = document.getElementsByClassName("tabcontent");
+      const tablinks = document.getElementsByClassName("tablinks");
       for(i = 0; i < tabcontent.length; i++){
           tabcontent[i].style.display = "none";
       }
 
-      tablinks = document.getElementsByClassName("tablinks");
+      
       for(i = 0; i <tablinks.length; i++){
           tablinks[i].className = tablinks[i].className.replace(" active", "");
 
       }
       document.getElementById(tabName).style.display = "block";
       event.currentTarget.className += " active";
-    }
+}
 
   window.onload = function(){
     document.getElementById("defaultOpen").click();
-  }
+}
 
 
   const dropdown = document.getElementById("exercises")
@@ -45,7 +47,7 @@ function openTab(event, tabName){
     option.text = exercise;
     dropdown.appendChild(option);
 
-  });
+});
 
 function calculateReps(exercise, calories, weight) 
 {
