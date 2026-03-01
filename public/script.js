@@ -7,8 +7,8 @@ const exercises = [
   { name: "Mountain Climbers", met: 8.0, repsPerMinute: 40, img: './ExerciseImages/MountainClimbers.jpg' },
   { name: "Push-ups", met: 3.8, repsPerMinute: 20, img: './ExerciseImages/Push-ups.png' },
   { name: "Squats", met: 5.0, repsPerMinute: 20, img: './ExerciseImages/Squats.jpg' },
-  { name: "Bench Press", met: 3.5, repsPerMinute: 12, img: './ExerciseImages/BenchPress.jpg' },
-  { name: "Deadlift", met: 6.0, repsPerMinute: 10, img: './ExerciseImages/Deadlift.jpg' },
+  { name: "Bench Press (135 lbs)", met: 3.5, repsPerMinute: 12, img: './ExerciseImages/BenchPress.jpg' },
+  { name: "Deadlift (135 lbs)", met: 6.0, repsPerMinute: 10, img: './ExerciseImages/Deadlift.jpg' },
   { name: "Pull-ups", met: 8.0, repsPerMinute: 8, img: './ExerciseImages/Pull-ups.jpg' },
   { name: "Lunges", met: 4.0, repsPerMinute: 16, img: './ExerciseImages/Lunges.jpg' },
   { name: "Sit-ups", met: 3.8, repsPerMinute: 25, img: './ExerciseImages/situps.png' },
@@ -56,7 +56,11 @@ window.addEventListener("DOMContentLoaded", function() {
     document.getElementById("reps").textContent = result.value + " " + result.unit;
     document.getElementById("calories").textContent = calories;
 
-    
+    const resultExercise = document.getElementById("resultExercise");
+    resultExercise.innerHTML = `
+    <p>Selected Exercise: ${exercise.name}</p>
+    <img src="${exercise.img}" alt="${exercise.name}" width="200">
+    `;
     });
     
 
@@ -122,7 +126,7 @@ function calculateReps(exercise, calories, weight)
       return { value: Math.round(miles * 100) / 100, unit: "miles" };
     }
 
-    if (exercise.name === "Bench Press" || exercise.name === "Deadlift")
+    if (exercise.name === "Bench Press (135 lbs)" || exercise.name === "Deadlift (135 lbs)")
       weight = 61.2;
     else
       weight = weight/2.205;

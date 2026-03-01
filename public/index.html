@@ -70,10 +70,7 @@
 
     <form id = "weightForm">
       <label for = "fname">Enter weight here, then select exercise (lbs): </label>
-      <input type = "number" id = "fname" name = "fname" required min = 1> <br> <br>
-
-      <button type = "submit">submit</button>
-
+      <input type = "number" id = "fname" name = "fname" required min = 1> <br> <br> 
     </form>
 
     <p>
@@ -85,10 +82,13 @@
     </audio>
   </div>
 
-  <div id = "Result" class = "tabcontent">
-      <p>You will need to do <span id="reps"></span></p>
-      <p>to burn off <span id = "calories"></span> calories</p>
-  </div>
+  <div id="Result" class="tabcontent">
+    <button type = "submit">Find out!</button>
+    <p>You will need to do <span id="reps"></span></p>
+    <p>to burn off <span id="calories"></span> calories</p>
+    <br>
+    <div id="resultExercise"></div>
+</div>
 </div>
 
   <script src="script.js"></script>
