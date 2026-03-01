@@ -9,11 +9,27 @@ const exercises = [
   { name: "Squats", met: 5.0, repsPerMinute: 20, image: "/ExerciseImages/Squats.jpg" },
   { name: "Bench Press", met: 3.5, repsPerMinute: 12, image: "/ExerciseImages/BenchPress.jpg" },
   { name: "Deadlift", met: 6.0, repsPerMinute: 10, image: "/ExerciseImages/Deadlift.jpg" },
-  { name: "Pull-ups", met: 8.0, repsPerMinute: 8, image: "/ExerciseImages/Pullups.jpg" },
+  { name: "Pull-ups", met: 8.0, repsPerMinute: 8, image: "/ExerciseImages/Pull-ups.jpg" },
   { name: "Lunges", met: 4.0, repsPerMinute: 16, image: "/ExerciseImages/Lunges.jpg" },
-  { name: "Sit-ups", met: 3.8, repsPerMinute: 25, image: "/ExerciseImages/Situps.jpg" },
+  { name: "Sit-ups", met: 3.8, repsPerMinute: 25, image: "./ExerciseImages/situps.jpg" },
   { name: "Plank (seconds)", met: 3.5, repsPerMinute: 60, image: "/ExerciseImages/Plank.jpg" },
 ];
+function displaySelection() {
+    const selectElement = document.getElementById("exercises");
+    const displayArea = document.getElementById("displayArea");
+
+    const selectedValue = selectElement.value; 
+    const exercise = exercises.find(ex => ex.name === selectedValue);
+
+    if (exercise) {
+        displayArea.innerHTML = `
+            <h3>${exercise.name}</h3>
+            <img src="${exercise.image}" alt="${exercise.name}" width="200">
+            <p>MET: ${exercise.met}</p>
+            <p>Reps per minute: ${exercise.repsPerMinute}</p>
+        `;
+    }
+}
 
 
 function openTab(event, tabName) {
@@ -49,4 +65,6 @@ function calculateReps(exercise, calories, weight)
     let reps = calories / (exercise.met * weight * 3.5 / 200 / exercise.repsPerMinute);
     return {reps, image: exercise.image};
 }
+
+
 

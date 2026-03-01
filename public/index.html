@@ -29,13 +29,17 @@
 
   <div id = "Exercises" class = "tabcontent">
       <h3>Exercises</h3>
-      <p>Exercises search bar</p>
+      
 
       
-      <select name = "exercises" id = "exercises">
+      <select name = "exercises" id = "exercises" onchange = "displaySelection()">
         <option value = "" disabled selected>Choose an exercise</option>
 
       </select>
+      <p>
+        <br>
+        <span id="displayArea"></span>
+      </p>
 
       
 
@@ -49,6 +53,16 @@
       <img src="burger.png" alt="Burger Image" width="200">
       <figcaption>original burger artwork by the one the only aaron chen</figcaption>
     </figure>
+
+    <p>
+      
+      <br>
+      
+      BURGER SONG
+    </p>
+    <audio controls autoplay>
+      <source src = "sssSpotify.com_downloader_1772336134679.mp3" type = "audio/mp3">
+    </audio>
 
    
 
