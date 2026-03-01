@@ -9,40 +9,38 @@
 <body>
   <h1 style="text-align: center;">BurgerMeter</h1>
 
-  <div class = "tab">
-
-    
+  <div class = "tab"> 
     <button class = "tablinks" onclick="openTab(event, 'Food and Restaurants')">Food and Restaurants</button>
     <button class = "tablinks" onclick="openTab(event, 'Exercises')">Exercises</button>
   </div>
 
-    <div id = "Food and Restaurants" class = "tabcontent">
+  <div id = "Food and Restaurants" class = "tabcontent">
       <h3>Food and Restaurants</h3>
       <p>Food and Restaurant search bar</p>
-    </div>
+  </div>
 
-    <div id = "Exercises" class = "tabcontent">
+  <div id = "Exercises" class = "tabcontent">
       <h3>Exercises</h3>
       <p>Exercises search bar</p>
-    </div>
+  </div>
   
 
   <script>
     function openTab(event, tabName){
-    var i, tabcontent, tablinks;
+      var i, tabcontent, tablinks;
 
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for(i = 0; i < tabcontent.length; i++){
-        tabcontent[i].style.display = "none";
-    }
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for(i = 0; i < tabcontent.length; i++){
+          tabcontent[i].style.display = "none";
+      }
 
-    tablinks = document.getElementsByClassName("tablinks");
-    for(i = 0; i <tablinks.length; i++){
-        tablinks[i].className = tablinks.className.replace(" active", "");
+      tablinks = document.getElementsByClassName("tablinks");
+      for(i = 0; i <tablinks.length; i++){
+          tablinks[i].className = tablinks.className.replace(" active", "");
 
-    }
-    document.getElementById(tabName).style.display = "block";
-    event.currentTarget.className += "active";
+      }
+      document.getElementById(tabName).style.display = "block";
+      event.currentTarget.className += "active";
     }
   </script>
 
