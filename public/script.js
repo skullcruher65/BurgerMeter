@@ -17,14 +17,14 @@ const exercises = [
   { name: "Plank (seconds)", met: 3.5, repsPerMinute: 60 },
 ];
 
-const dropdown = document.getElementById("exercises")
-exercises.forEach((exercise) => {
-  const option = document.createElement("option");
-  option.value = exercise;
-  option.text = exercise;
-  dropdown.appendChild(option);
-s
-});
+  const dropdown = document.getElementById("exercises")
+  exercises.forEach((exercise) => {
+    const option = document.createElement("option");
+    option.value = exercise;
+    option.text = exercise;
+    dropdown.appendChild(option);
+
+  });
 
 function calculateReps(exercise, calories, weight) 
 {
