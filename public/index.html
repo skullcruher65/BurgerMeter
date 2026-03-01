@@ -64,20 +64,19 @@
 
     <form id = "weightForm">
       <label for = "fname">Enter weight here, then select exercise (lbs): </label>
-      <input type = "number" id = "fname" name = "fname" required min = 1> <br> <br> 
+      <input type="number" id="fname" name="fname" min=1 oninput="tryCalculate()"> <br> <br> 
     </form>
 
     <p>
       <br>
       BURGER SONG
     </p>
-    <audio controls autoplay>
+    <audio controls>
       <source src = "sssSpotify.com_downloader_1772336134679.mp3" type = "audio/mp3">
     </audio>
   </div>
 
   <div id="Result" class="tabcontent">
-    <button type = "submit">Find out!</button>
     <p>You will need to do <span id="reps"></span></p>
     <p>to burn off <span id="calories"></span> calories</p>
     <br>

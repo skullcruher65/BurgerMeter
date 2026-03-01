@@ -97,19 +97,3 @@ body {
   margin: 0 auto; 
   padding: 20px; 
 }
-
-button[type="submit"] {
-  background: #8b4513;
-  color: #f5c842;
-  border: none;
-  padding: 10px 24px;
-  font-family: Georgia, serif;
-  font-size: 1rem;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: 0.3s;
-}
-
-button[type="submit"]:hover {
-  background: #5c2a0e;
-}

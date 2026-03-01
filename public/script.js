@@ -32,40 +32,7 @@ window.addEventListener("DOMContentLoaded", function() {
 
     const defaultTab = document.getElementById("defaultOpen");
     if (defaultTab) defaultTab.click();
-
-    document.getElementById("weightForm").addEventListener("submit", function(event) {
-    event.preventDefault(); 
-
-    const weight = parseFloat(document.getElementById("fname").value);
-    const selectedValue = document.getElementById("exercises").value;
-    const exercise = exercises.find(ex => ex.name === selectedValue);
-
-    if (!exercise) {
-        alert("Please select an exercise.");
-        return;
-    }
-
-    if (isNaN(weight) || weight <= 0) {
-        alert("Please enter a valid weight greater than 0.");
-        return;
-    }
-
-    const calories = 100; 
-    const result = calculateReps(exercise, calories, weight);
     
-    document.getElementById("reps").textContent = result.value + " " + result.unit;
-    document.getElementById("calories").textContent = calories;
-
-    const resultExercise = document.getElementById("resultExercise");
-    resultExercise.innerHTML = `
-    <p>Selected Exercise: ${exercise.name}</p>
-    <img src="${exercise.img}" alt="${exercise.name}" width="200">
-    `;
-    });
-    
-
-    
-
     // Populate dropdown
     const dropdown = document.getElementById("exercises");
     exercises.forEach(ex => {
@@ -76,7 +43,22 @@ window.addEventListener("DOMContentLoaded", function() {
     });
 });
 
+function tryCalculate() {
+    const weight = parseFloat(document.getElementById("fname").value);
+    const selectedValue = document.getElementById("exercises").value;
+    const exercise = exercises.find(ex => ex.name === selectedValue);
 
+    if (!exercise || isNaN(weight) || weight <= 0) return;
+
+    const calories = 100;
+    const result = calculateReps(exercise, calories, weight);
+
+    document.getElementById("reps").textContent = result.value + " " + result.unit;
+    document.getElementById("calories").textContent = calories;
+    document.getElementById("resultExercise").innerHTML =
+        "<p>Selected Exercise: " + exercise.name + "</p>" +
+        "<img src='" + exercise.img + "' alt='" + exercise.name + "' width='200'>";
+}
 
 function displaySelection() {
     const displayArea = document.getElementById("displayArea");
@@ -94,8 +76,9 @@ function displaySelection() {
         displayArea.innerHTML = `
             <h3>${exercise.name}</h3>
             <img src="${exercise.img}" alt="${exercise.name}" width="200">
-            ` 
-            ;
+            `;
+
+        tryCalculate();
     }
 
     const weightInput = document.getElementById("fname");
