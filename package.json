@@ -1,0 +1,23 @@
+{
+  "name": "BurgerMeter",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000B\u0000u\u0000r\u0000g\u0000e\u0000r\u0000M\u0000e\u0000t\u0000e\u0000r\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skullcruher65/BurgerMeter.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/skullcruher65/BurgerMeter/issues"
+  },
+  "homepage": "https://github.com/skullcruher65/BurgerMeter#readme",
+  "devDependencies": {
+    "fatsecret.js": "^1.0.9"
+  }
+}
