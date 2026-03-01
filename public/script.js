@@ -24,7 +24,7 @@ function displaySelection() {
 
     if (exercise) {
 
-        displayArea.textContent  = 'You selected: ${selectedValue}';
+        displayArea.textContent  = 'You selected:';
         
         
     }
