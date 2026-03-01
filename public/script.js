@@ -1,3 +1,5 @@
+
+
 const exercises = [
   { name: "Running (6mph)", met: 9.8, repsPerMinute: 160, image: "/ExerciseImages/Running.jpg" },
   { name: "Jumping Jacks", met: 8.0, repsPerMinute: 50, image: "/ExerciseImages/JumpingJacks.jpg" },
@@ -15,9 +17,38 @@ const exercises = [
   { name: "Plank (seconds)", met: 3.5, repsPerMinute: 60, image: "/ExerciseImages/Plank.jpg" },
 ];
 
+  const dropdown = document.getElementById("exercises")
+  exercises.forEach((exercise) => {
+    const option = document.createElement("option");
+    option.value = exercise;
+    option.text = exercise;
+    dropdown.appendChild(option);
+
+  });
+
 function calculateReps(exercise, calories, weight) 
 {
     let reps = calories / (exercise.met * weight * 3.5 / 200 / exercise.repsPerMinute);
     return {reps, image: exercise.image};
 }
 
+function openTab(event, tabName){
+      var i, tabcontent, tablinks;
+
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for(i = 0; i < tabcontent.length; i++){
+          tabcontent[i].style.display = "none";
+      }
+
+      tablinks = document.getElementsByClassName("tablinks");
+      for(i = 0; i <tablinks.length; i++){
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+
+      }
+      document.getElementById(tabName).style.display = "block";
+      event.currentTarget.className += " active";
+    }
+
+  window.onload = function(){
+    document.getElementById("defaultOpen").click();
+  }

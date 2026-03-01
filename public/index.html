@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel = "stylesheet" href ="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BurgerMeter</title>
@@ -8,38 +9,50 @@
 <body>
   <h1 style="text-align: center;">BurgerMeter</h1>
 
-  <div class = "tab">
-    
-    <button class = "tablinks" onclick="openTab(event, 'Food and Restaurants')">Food and Restaurants</button>
+  <div class = "tab"> 
+    <button class = "tablinks" onclick="openTab(event, 'BurgerMeter')" id = "defaultOpen">BurgerMeter</button>
+    <button class = "tablinks" onclick="openTab(event, 'Food_and_Restaurants')">Food and Restaurants</button>
     <button class = "tablinks" onclick="openTab(event, 'Exercises')">Exercises</button>
 
+    
 
-    <div id = "Food and Restaurants" class = "tabcontent">
-      <h3>Food and Restaurants</h3>
-      <p>Food and Restaurant search bar</p>
-    </div>
 
-    <div id = "Exercises" class = "tabcontent">
-      <h3>Exercises</h3>
-      <p>Exercises search bar</p>
-    </div>
   </div>
 
-  
-  <p>Welcome to BurgerMeter! This is a simple web application that allows you to track your burger consumption. 
-    You can add burgers to your meter and see how many you've eaten over time.</p>
-  
-  <figure>
-    <img src="burger.png" alt="Burger Image" width="200">
-    <figcaption>original burger artwork by the one the only aaron chen</figcaption>
-  </figure>
+   
 
+  <div id = "Food_and_Restaurants" class = "tabcontent">
+      <h3>Food and Restaurants</h3>
+      <p>Food and Restaurant search bar</p>
+  </div>
 
+  <div id = "Exercises" class = "tabcontent">
+      <h3>Exercises</h3>
+      <p>Exercises search bar</p>
 
-  
+      
+      <select name = "exercises" id = "exercises">
+        <option value = "choose an exercises"></option>
 
+      </select>
 
-  
+      
+
+  </div>
+
+  <div id = "BurgerMeter" class="tabcontent"> <!-- HOME PAGE is HERE -->
+      <p>Welcome to BurgerMeter! This is a simple web application that allows you to track your burger consumption. 
+      You can add burgers to your meter and see how many you've eaten over time.</p>
+    
+    <figure>
+      <img src="burger.png" alt="Burger Image" width="200">
+      <figcaption>original burger artwork by the one the only aaron chen</figcaption>
+    </figure>
+
+   
+
+  </div>
+
 
   <script src="script.js"></script>
   <script type="module">
