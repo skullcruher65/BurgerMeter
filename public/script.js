@@ -14,21 +14,7 @@ const exercises = [
   { name: "Sit-ups", met: 3.8, repsPerMinute: 25, image: "./ExerciseImages/situps.jpg" },
   { name: "Plank (seconds)", met: 3.5, repsPerMinute: 60, image: "/ExerciseImages/Plank.jpg" },
 ];
-function displaySelection() {
-    const selectElement = document.getElementById("exercises");
-    const displayArea = document.getElementById("displayArea");
-    const displayText = document.getElementById("displayText");
 
-    const selectedValue = selectElement.value; // simpler than using selectedIndex
-    const exercise = exercises.find(ex => ex.name === selectedValue);
-
-    if (exercise) {
-
-        displayArea.textContent  = 'You selected:';
-        
-        
-    }
-}
 
 function openTab(event, tabName) {
     const tabcontent = document.getElementsByClassName("tabcontent");
@@ -55,6 +41,22 @@ window.addEventListener("DOMContentLoaded", function() {
         dropdown.appendChild(option);
     });
 });
+
+function displaySelection() {
+    const selectElement = document.getElementById("exercises");
+    const displayArea = document.getElementById("displayArea");
+    const displayText = document.getElementById("displayText");
+
+    const selectedValue = selectElement.value; // simpler than using selectedIndex
+    const exercise = exercises.find(ex => ex.name === selectedValue);
+
+    if (exercise) {
+
+        displayArea.textContent  = 'You selected:';
+        
+        
+    }
+}
 
   
 
