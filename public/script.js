@@ -1,18 +1,18 @@
 const exercises = [
-  { name: "Running (6mph)", met: 9.8, repsPerMinute: 160, image: "/ExerciseImages/Running.jpg" },
-  { name: "Jumping Jacks", met: 8.0, repsPerMinute: 50, image: "/ExerciseImages/JumpingJacks.jpg" },
-  { name: "Burpees", met: 8.0, repsPerMinute: 15, image: "/ExerciseImages/Burpees.jpg" },
-  { name: "Jump Rope", met: 11.8, repsPerMinute: 120, image: "/ExerciseImages/JumpRope.jpg" },
-  { name: "High Knees", met: 8.0, repsPerMinute: 60, image: "/ExerciseImages/HighKnees.jpg" },
-  { name: "Mountain Climbers", met: 8.0, repsPerMinute: 40, image: "/ExerciseImages/MountainClimbers.jpg" },
-  { name: "Push-ups", met: 3.8, repsPerMinute: 20, image: "/ExerciseImages/Push-ups.png" },
-  { name: "Squats", met: 5.0, repsPerMinute: 20, image: "/ExerciseImages/Squats.jpg" },
-  { name: "Bench Press", met: 3.5, repsPerMinute: 12, image: "/ExerciseImages/BenchPress.jpg" },
-  { name: "Deadlift", met: 6.0, repsPerMinute: 10, image: "/ExerciseImages/Deadlift.jpg" },
-  { name: "Pull-ups", met: 8.0, repsPerMinute: 8, image: "/ExerciseImages/Pull-ups.jpg" },
-  { name: "Lunges", met: 4.0, repsPerMinute: 16, image: "/ExerciseImages/Lunges.jpg" },
-  { name: "Sit-ups", met: 3.8, repsPerMinute: 25, image: "./ExerciseImages/situps.jpg" },
-  { name: "Plank (seconds)", met: 3.5, repsPerMinute: 60, image: "/ExerciseImages/Plank.jpg" },
+  { name: "Running (6mph)", met: 9.8, repsPerMinute: 160, img: './ExerciseImages/Running.jpg' },
+  { name: "Jumping Jacks", met: 8.0, repsPerMinute: 50, img: './ExerciseImages/JumpingJacks.jpg' },
+  { name: "Burpees", met: 8.0, repsPerMinute: 15, img: './ExerciseImages/Burpees.jpg' },
+  { name: "Jump Rope", met: 11.8, repsPerMinute: 120, img: './ExerciseImages/JumpRope.jpg' },
+  { name: "High Knees", met: 8.0, repsPerMinute: 60, img: './ExerciseImages/HighKnees.jpg' },
+  { name: "Mountain Climbers", met: 8.0, repsPerMinute: 40, img: './ExerciseImages/MountainClimbers.jpg' },
+  { name: "Push-ups", met: 3.8, repsPerMinute: 20, img: './ExerciseImages/Push-ups.png' },
+  { name: "Squats", met: 5.0, repsPerMinute: 20, img: './ExerciseImages/Squats.jpg' },
+  { name: "Bench Press", met: 3.5, repsPerMinute: 12, img: './ExerciseImages/BenchPress.jpg' },
+  { name: "Deadlift", met: 6.0, repsPerMinute: 10, img: './ExerciseImages/Deadlift.jpg' },
+  { name: "Pull-ups", met: 8.0, repsPerMinute: 8, img: './ExerciseImages/Pull-ups.jpg' },
+  { name: "Lunges", met: 4.0, repsPerMinute: 16, img: './ExerciseImages/Lunges.jpg' },
+  { name: "Sit-ups", met: 3.8, repsPerMinute: 25, img: './ExerciseImages/situps.png' },
+  { name: "Plank (seconds)", met: 3.5, repsPerMinute: 60, img: './ExerciseImages/Plank.jpg' },
 ];
 
 
@@ -29,9 +29,38 @@ function openTab(event, tabName) {
 }
 
 window.addEventListener("DOMContentLoaded", function() {
-    // Open default tab
+
     const defaultTab = document.getElementById("defaultOpen");
     if (defaultTab) defaultTab.click();
+
+    document.getElementById("weightForm").addEventListener("submit", function(event) {
+    event.preventDefault(); 
+
+    const weight = parseFloat(document.getElementById("fname").value);
+    const selectedValue = document.getElementById("exercises").value;
+    const exercise = exercises.find(ex => ex.name === selectedValue);
+
+    if (!exercise) {
+        alert("Please select an exercise.");
+        return;
+    }
+
+    if (isNaN(weight) || weight <= 0) {
+        alert("Please enter a valid weight greater than 0.");
+        return;
+    }
+
+    const calories = 100; 
+    const result = calculateReps(exercise, calories, weight);
+    
+    document.getElementById("reps").textContent = result.value + " " + result.unit;
+    document.getElementById("calories").textContent = calories;
+
+    
+    });
+    
+
+    
 
     // Populate dropdown
     const dropdown = document.getElementById("exercises");
@@ -43,19 +72,35 @@ window.addEventListener("DOMContentLoaded", function() {
     });
 });
 
+
+
 function displaySelection() {
-    const selectElement = document.getElementById("exercises");
     const displayArea = document.getElementById("displayArea");
     const displayText = document.getElementById("displayText");
-
-    const selectedValue = selectElement.value; // simpler than using selectedIndex
+    const selectedValue = document.getElementById("exercises").value;
     const exercise = exercises.find(ex => ex.name === selectedValue);
+
+    if(!exercise){
+        return;
+    }
 
     if (exercise) {
 
-        displayArea.textContent  = 'You selected:';
-        
-        
+        displayText.textContent  = 'Selected Exercise: ';
+        displayArea.innerHTML = `
+            <h3>${exercise.name}</h3>
+            <img src="${exercise.img}" alt="${exercise.name}" width="200">
+            ` 
+            ;
+    }
+
+    const weightInput = document.getElementById("fname");
+    const weight = parseFloat(weightInput.value);
+    if (!isNaN(weight) && weight > 0){
+        const calories = 100;
+        const result = calculateReps(exercise, calories, weight);
+        document.getElementById("reps").textContent = result.value + " " + result.unit;
+        document.getElementById("calories").textContent = calories;
     }
 }
 
@@ -63,8 +108,28 @@ function displaySelection() {
 
 function calculateReps(exercise, calories, weight) 
 {
-    let reps = calories / (exercise.met * weight * 3.5 / 200 / exercise.repsPerMinute);
-    return {reps, image: exercise.image};
+    if (exercise.name === "Plank (seconds)")
+    {
+      weight = weight / 2.205;
+      let seconds = calories / (exercise.met * weight * 3.5 / 200 / 60);
+      return { value: Math.round(seconds), unit: "seconds" };
+    }
+
+    if (exercise.name === "Running (6mph)") 
+    {
+      weight = weight / 2.205;
+      let miles = calories / (exercise.met * weight * 3.5 / 200) / 6; // 6mph
+      return { value: Math.round(miles * 100) / 100, unit: "miles" };
+    }
+
+    if (exercise.name === "Bench Press" || exercise.name === "Deadlift")
+      weight = 61.2;
+    else
+      weight = weight/2.205;
+
+    let reps = calories / ((exercise.met * weight * 3.5 / 200) / exercise.repsPerMinute);
+    
+    return { value: Math.round(reps), unit: "reps" };
 }
 
 // Burger rain animation
@@ -92,4 +157,5 @@ const canvas = document.getElementById("burgerCanvas");
     });
   }
   setInterval(draw, 40);
+
 
