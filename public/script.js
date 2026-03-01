@@ -17,8 +17,38 @@ const exercises = [
   { name: "Plank (seconds)", met: 3.5, repsPerMinute: 60 },
 ];
 
+const dropdown = document.getElementById("exercises")
+exercises.forEach((exercise) => {
+  const option = document.createElement("option");
+  option.value = exercise;
+  option.text = exercise;
+  dropdown.appendChild(option);
+s
+});
+
 function calculateReps(exercise, calories, weight) 
 {
     let reps = calories / (exercise.met * weight * 3.5 / 200 / exercise.repsPerMinute);
     return reps;
 }
+
+function openTab(event, tabName){
+      var i, tabcontent, tablinks;
+
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for(i = 0; i < tabcontent.length; i++){
+          tabcontent[i].style.display = "none";
+      }
+
+      tablinks = document.getElementsByClassName("tablinks");
+      for(i = 0; i <tablinks.length; i++){
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+
+      }
+      document.getElementById(tabName).style.display = "block";
+      event.currentTarget.className += " active";
+    }
+
+  window.onload = function(){
+    document.getElementById("defaultOpen").click();
+  }
