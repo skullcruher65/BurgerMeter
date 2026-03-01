@@ -114,6 +114,7 @@ function displaySelection() {
 
 function calculateReps(exercise, calories, weight) 
 {
+    weight = weight/2.205;
     let reps = calories / ((exercise.met * weight * 3.5 / 200) / exercise.repsPerMinute);
     
     return reps;
