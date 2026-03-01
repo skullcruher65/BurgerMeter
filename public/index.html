@@ -7,17 +7,21 @@
     <title>BurgerMeter</title>
 </head>
 <body>
-  <h1 style="text-align: center;">BurgerMeter</h1>
+  <canvas id="burgerCanvas"></canvas>
+<div class="banner">
+  <img src="BurgerBanner.jpg" alt="BurgerMeter Banner">
+  <div class="banner-overlay">
+    <h1>🍔 BurgerMeter</h1>
+  </div>
+</div>
 
+  <div class="content-wrapper">
   <div class = "tab"> 
     <button class = "tablinks" onclick="openTab(event, 'BurgerMeter')" id = "defaultOpen">BurgerMeter</button>
     <button class = "tablinks" onclick="openTab(event, 'Food_and_Restaurants')">Food and Restaurants</button>
     <button class = "tablinks" onclick="openTab(event, 'Exercises')">Exercises</button>
-
-    
-
-
   </div>
+  
 
   
    
@@ -48,7 +52,7 @@
   </div>
 
   <div id = "BurgerMeter" class="tabcontent"> <!-- HOME PAGE is HERE -->
-      <p>Welcome to BurgerMeter! This is a fitness app that allows you to see how many reps of an 
+      <p style="font-size: 24px;">Welcome to BurgerMeter! This is a fitness app that allows you to see how many reps of an 
         exercise you will need to do in order to burn off the calories from fast food! To get started, select a 
         restaurant and then select a food, then choose an exercise to do.
       </p>
@@ -59,19 +63,14 @@
     </figure>
 
     <p>
-      
       <br>
-      
       BURGER SONG
     </p>
     <audio controls autoplay>
       <source src = "sssSpotify.com_downloader_1772336134679.mp3" type = "audio/mp3">
     </audio>
-
-   
-
   </div>
-
+  </div>
 
   <script src="script.js"></script>
   <script type="module">

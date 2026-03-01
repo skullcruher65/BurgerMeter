@@ -22,8 +22,9 @@ function openTab(event, tabName) {
 
     for (let i = 0; i < tabcontent.length; i++) tabcontent[i].style.display = "none";
     for (let i = 0; i < tablinks.length; i++) tablinks[i].className = tablinks[i].className.replace(" active", "");
-
-    document.getElementById(tabName).style.display = "block";
+    
+    document.getElementById(tabName).style.display = tabName === "BurgerMeter" ? "flex" : "block";
+    
     event.currentTarget.className += " active";
 }
 
@@ -66,5 +67,29 @@ function calculateReps(exercise, calories, weight)
     return {reps, image: exercise.image};
 }
 
-
+// Burger rain animation
+const canvas = document.getElementById("burgerCanvas");
+  const ctx = canvas.getContext("2d");
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  const drops = [];
+  const SIZE = 22;
+  const SIDE = 180;
+  const totalCols = Math.floor(canvas.width / SIZE);
+  for (let i = 0; i < totalCols; i++) {
+    const x = i * SIZE;
+    drops.push((x < SIDE || x > canvas.width - SIDE) ? Math.random() * -50 : null);
+  }
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.font = `${SIZE}px serif`;
+    ctx.globalAlpha = 0.8;
+    drops.forEach((d, i) => {
+      if (d === null) return;
+      ctx.fillText("🍔", i * SIZE, d * SIZE);
+      drops[i] += 0.5;
+      if (drops[i] * SIZE > canvas.height) drops[i] = Math.random() * -20;
+    });
+  }
+  setInterval(draw, 40);
 
