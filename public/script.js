@@ -37,17 +37,19 @@ function openTab(event, tabName){
 
   window.onload = function(){
     document.getElementById("defaultOpen").click();
-}
 
-
-  const dropdown = document.getElementById("exercises")
+    const dropdown = document.getElementById("exercises")
   exercises.forEach((exercise) => {
     const option = document.createElement("option");
-    option.value = exercise;
-    option.text = exercise;
+    option.value = exercise.name;
+    option.text = exercise.name;
     dropdown.appendChild(option);
 
 });
+}
+
+
+  
 
 function calculateReps(exercise, calories, weight) 
 {
