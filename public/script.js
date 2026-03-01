@@ -28,9 +28,38 @@ function openTab(event, tabName) {
 }
 
 window.addEventListener("DOMContentLoaded", function() {
-    // Open default tab
+
     const defaultTab = document.getElementById("defaultOpen");
     if (defaultTab) defaultTab.click();
+
+    document.getElementById("weightForm").addEventListener("submit", function(event) {
+    event.preventDefault(); 
+
+    const weight = parseFloat(document.getElementById("fname").value);
+    const selectedValue = document.getElementById("exercises").value;
+    const exercise = exercises.find(ex => ex.name === selectedValue);
+
+    if (!exercise) {
+        alert("Please select an exercise.");
+        return;
+    }
+
+    if (isNaN(weight) || weight <= 0) {
+        alert("Please enter a valid weight greater than 0.");
+        return;
+    }
+
+    const calories = 100; 
+    const reps = calculateReps(exercise, calories, weight);
+
+    document.getElementById("reps").textContent = Math.round(reps);
+    document.getElementById("calories").textContent = calories;
+
+    
+    });
+    
+
+    
 
     // Populate dropdown
     const dropdown = document.getElementById("exercises");
@@ -42,19 +71,42 @@ window.addEventListener("DOMContentLoaded", function() {
     });
 });
 
+
+
 function displaySelection() {
     const selectElement = document.getElementById("exercises");
     const displayArea = document.getElementById("displayArea");
     const displayText = document.getElementById("displayText");
 
-    const selectedValue = selectElement.value; // simpler than using selectedIndex
+    const selectedValue = document.getElementById("exercises").value;
     const exercise = exercises.find(ex => ex.name === selectedValue);
+
+    if(!exercise){
+        return;
+    }
+
+ 
+
 
     if (exercise) {
 
-        displayArea.textContent  = 'You selected:';
-        
-        
+        displayText.textContent  = 'Selected Exercise: ';
+        displayArea.innerHTML = `
+            <h3>${exercise.name}</h3>
+            <img src="${exercise.image}" alt="${exercise.name}" width="200">
+            `
+
+            
+            ;
+    }
+
+    const weightInput = document.getElementById("fname");
+    const weight = parseFloat(weightInput.value);
+    if (!isNaN(weight) && weight > 0){
+        const calories = 100;
+        const reps = calculateReps(exercise, calories, weight);
+        document.getElementById("reps").textContent = Math.round(reps);
+        document.getElementById("calories").textContent = calories;
     }
 }
 
@@ -62,9 +114,11 @@ function displaySelection() {
 
 function calculateReps(exercise, calories, weight) 
 {
-    let reps = calories / (exercise.met * weight * 3.5 / 200 / exercise.repsPerMinute);
-    return {reps, image: exercise.image};
+    let reps = calories / ((exercise.met * weight * 3.5 / 200) / exercise.repsPerMinute);
+    
+    return reps;
 }
+
 
 
 

@@ -13,6 +13,7 @@
     <button class = "tablinks" onclick="openTab(event, 'BurgerMeter')" id = "defaultOpen">BurgerMeter</button>
     <button class = "tablinks" onclick="openTab(event, 'Food_and_Restaurants')">Food and Restaurants</button>
     <button class = "tablinks" onclick="openTab(event, 'Exercises')">Exercises</button>
+    <button class = "tablinks" onclick="openTab(event, 'Result')">Result</button>
 
     
 
@@ -25,6 +26,8 @@
   <div id = "Food_and_Restaurants" class = "tabcontent">
       <h3>Food and Restaurants</h3>
       <p>Food and Restaurant search bar</p>
+
+
   </div>
 
   <div id = "Exercises" class = "tabcontent">
@@ -32,24 +35,24 @@
       
 
       
-      <select name = "exercises" id = "exercises" onchange = "displaySelection()">
+      <select name = "exercises" id = "exercises" onchange= displaySelection()>
         <option value = "" disabled selected>Choose an exercise</option>
 
       </select>
-      <p>
+
+
+  </div>
+
+   <p>
         <br>
-        <!-- <div id ="displayText"></div> -->
+        <div id ="displayText"></div> 
         <div id="displayArea"></div>
 
       </p>
 
-      
-
-  </div>
-
   <div id = "BurgerMeter" class="tabcontent"> <!-- HOME PAGE is HERE -->
       <p>Welcome to BurgerMeter! This is a fitness app that allows you to see how many reps of an 
-        exercise you will need to do in order to burn off the calories from fast food! To get started, select a 
+        exercise you will need to do in order to burn off the calories from a certain fast food based on your weight! To get started, select a 
         restaurant and then select a food, then choose an exercise to do.
       </p>
     
@@ -57,6 +60,14 @@
       <img src="burger.png" alt="Burger Image" width="200">
       <figcaption>original burger artwork by the one the only aaron chen</figcaption>
     </figure>
+
+    <form id = "weightForm">
+      <label for = "fname">Enter weight here, then select exercise (kgs): </label>
+      <input type = "number" id = "fname" name = "fname" required min = 1> <br> <br>
+
+      <button type = "submit">submit</button>
+
+    </form>
 
     <p>
       
@@ -69,6 +80,15 @@
     </audio>
 
    
+
+  </div>
+
+  <div id = "Result" class = "tabcontent">
+      <p>You will need to do <span id = "reps"></span> reps </p> 
+      <p>to burn off <span id = "calories"></span> calories</p>
+
+      
+    
 
   </div>
 
