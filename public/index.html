@@ -14,9 +14,7 @@
     <button class = "tablinks" onclick="openTab(event, 'Food_and_Restaurants')">Food and Restaurants</button>
     <button class = "tablinks" onclick="openTab(event, 'Exercises')">Exercises</button>
 
-    <script>
-      document.getElementById("defaultOpen").click();
-    </script>
+    
 
 
   </div>
@@ -66,6 +64,10 @@
       document.getElementById(tabName).style.display = "block";
       event.currentTarget.className += " active";
     }
+
+  
+    document.getElementById("defaultOpen").click();
+    
   </script>
 
   
