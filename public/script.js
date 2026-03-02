@@ -1,3 +1,5 @@
+
+
 const exercises = [
   { name: "Running (6mph)", met: 9.8, repsPerMinute: 160, img: './ExerciseImages/Running.jpg' },
   { name: "Jumping Jacks", met: 8.0, repsPerMinute: 50, img: './ExerciseImages/JumpingJacks.jpg' },
@@ -41,6 +43,9 @@ window.addEventListener("DOMContentLoaded", function() {
         option.text = ex.name;
         dropdown.appendChild(option);
     });
+
+    document.getElementById("formName").addEventListener("input", displayFood)
+    document.getElementById("foodName").addEventListener("input", displayFood)
 });
 
 function tryCalculate() {
@@ -50,7 +55,7 @@ function tryCalculate() {
 
     if (!exercise || isNaN(weight) || weight <= 0) return;
 
-    const calories = 100;
+    const calories = getCalories();
     const result = calculateReps(exercise, calories, weight);
 
     document.getElementById("reps").textContent = result.value + " " + result.unit;
@@ -84,7 +89,7 @@ function displaySelection() {
     const weightInput = document.getElementById("fname");
     const weight = parseFloat(weightInput.value);
     if (!isNaN(weight) && weight > 0){
-        const calories = 100;
+        const calories = getCalories();
         const result = calculateReps(exercise, calories, weight);
         document.getElementById("reps").textContent = result.value + " " + result.unit;
         document.getElementById("calories").textContent = calories;
@@ -148,6 +153,49 @@ const canvas = document.getElementById("burgerCanvas");
 
   // food and restaurant search
 
-  
+  function getCalories(){
+    
+   
+    //function does thing to calculate calories;
+
+    const calories = 500;
+
+   
+
+
+    
+    return calories;
+
+
+
+  }
+
+  function displayFood(){
+
+    const restaurant = document.getElementById("formName").value.trim();
+    const food = document.getElementById("foodName").value.trim();
+
+    if (!(restaurant) || !(food)){
+      return 0;
+    }
+
+    const displayInput = document.getElementById("displayInput");
+    const calories = getCalories();
+
+    if (restaurant === "" || food === ""){
+      displayInput.textContent = "";
+      return 0;
+    }
+    else{
+        displayInput.textContent = `${restaurant} ${food} has ${calories} calories`;
+    } 
+
+
+
+
+
+
+  }
+
 
 

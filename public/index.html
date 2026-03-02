@@ -32,19 +32,21 @@
       <h3>Food and Restaurants</h3>
       
 
-      <form id = "restaurantForm">
+      
           <label for = "formName">Enter restaurant (ex: Burger King):  </label>
-          <input type = "text" id = "formName">
+          <input type = "text" id = "formName" oninput= displayFood()>
 
-      </form>
+      
 
       <br>
-      <form id = "foodForm">
+      
         <label for = "foodName">Enter food (ex: Whopper):  </label>
-        <input type = "text" id = "foodName">
+        <input type = "text" id = "foodName" oninput = displayFood()>
 
 
-      </form>
+        <br>
+        <br>
+      <div id = "displayInput"></div>
   </div>
 
   <div id = "Exercises" class = "tabcontent">
@@ -76,10 +78,10 @@
       <figcaption>original burger artwork by the one the only aaron chen</figcaption>
     </figure>
 
-    <form id = "weightForm">
+    
       <label for = "fname">Enter weight here, then select exercise (lbs): </label>
       <input type="number" id="fname" name="fname" min=1 oninput="tryCalculate()"> <br> <br> 
-    </form>
+    
 
     <p>
       <br>
