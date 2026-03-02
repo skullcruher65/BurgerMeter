@@ -44,18 +44,21 @@ window.addEventListener("DOMContentLoaded", function() {
         dropdown.appendChild(option);
     });
 
-    document.getElementById("formName").addEventListener("input", displayFood)
-    document.getElementById("foodName").addEventListener("input", displayFood)
+    document.getElementById("formName").addEventListener("Submit", displayFood)
+    document.getElementById("foodName").addEventListener("Submit", displayFood)
 });
 
-function tryCalculate() {
+async function tryCalculate() {
     const weight = parseFloat(document.getElementById("fname").value);
     const selectedValue = document.getElementById("exercises").value;
     const exercise = exercises.find(ex => ex.name === selectedValue);
 
+    const restaurant = document.getElementById("formName").value.trim();
+    const food = document.getElementById("foodName").value.trim();
+
     if (!exercise || isNaN(weight) || weight <= 0) return;
 
-    const calories = getCalories();
+    const calories = await getCalories(food, restaurant);
     const result = calculateReps(exercise, calories, weight);
 
     document.getElementById("reps").textContent = result.value + " " + result.unit;
@@ -65,7 +68,7 @@ function tryCalculate() {
         "<img src='" + exercise.img + "' alt='" + exercise.name + "' width='200'>";
 }
 
-function displaySelection() {
+async function displaySelection() {
     const displayArea = document.getElementById("displayArea");
     const displayText = document.getElementById("displayText");
     const selectedValue = document.getElementById("exercises").value;
@@ -89,7 +92,10 @@ function displaySelection() {
     const weightInput = document.getElementById("fname");
     const weight = parseFloat(weightInput.value);
     if (!isNaN(weight) && weight > 0){
-        const calories = getCalories();
+
+        const restaurant = document.getElementById("formName").value.trim();
+        const food = document.getElementById("foodName").value.trim();
+        const calories = await getCalories(food, restaurant);
         const result = calculateReps(exercise, calories, weight);
         document.getElementById("reps").textContent = result.value + " " + result.unit;
         document.getElementById("calories").textContent = calories;
@@ -153,24 +159,17 @@ const canvas = document.getElementById("burgerCanvas");
 
   // food and restaurant search
 
-  function getCalories(){
-    
-   
-    //function does thing to calculate calories;
+ async function getCalories(food, restaurant) {
+    const response = await fetch('https://indiscriminate-noiselessly-scarlette.ngrok-free.dev/calories?food=' + food + '&restaurant=' + restaurant, {
+    headers: {
+        'ngrok-skip-browser-warning': 'true'
+    }
+});
+    const data = await response.json();
+    return data.calories;
+}
 
-    const calories = 500;
-
-   
-
-
-    
-    return calories;
-
-
-
-  }
-
-  function displayFood(){
+  async function displayFood(){
 
     const restaurant = document.getElementById("formName").value.trim();
     const food = document.getElementById("foodName").value.trim();
@@ -180,7 +179,7 @@ const canvas = document.getElementById("burgerCanvas");
     }
 
     const displayInput = document.getElementById("displayInput");
-    const calories = getCalories();
+    const calories = await getCalories(food, restaurant);
 
     if (restaurant === "" || food === ""){
       displayInput.textContent = "";
@@ -189,9 +188,6 @@ const canvas = document.getElementById("burgerCanvas");
     else{
         displayInput.textContent = `${restaurant} ${food} has ${calories} calories`;
     } 
-
-
-
 
 
 
