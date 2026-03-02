@@ -56,7 +56,7 @@ async function tryCalculate() {
     const restaurant = document.getElementById("formName").value.trim();
     const food = document.getElementById("foodName").value.trim();
 
-    if (!exercise || isNaN(weight) || weight <= 0) return;
+    if (!exercise || isNaN(weight) || weight <= 0 || !food || !restaurant) return;
 
     const data = await getCalories(food, restaurant);
     const calories = data.calories;
