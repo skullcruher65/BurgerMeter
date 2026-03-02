@@ -58,7 +58,8 @@ async function tryCalculate() {
 
     if (!exercise || isNaN(weight) || weight <= 0) return;
 
-    const calories = await getCalories(food, restaurant);
+    const data = await getCalories(food, restaurant);
+    const calories = data.calories;
     const result = calculateReps(exercise, calories, weight);
 
     document.getElementById("reps").textContent = result.value + " " + result.unit;
@@ -173,41 +174,29 @@ const canvas = document.getElementById("burgerCanvas");
   setInterval(draw, 40);
 
 
-  // food and restaurant search
+  // food and restaurant search, runs python on other server
 
- async function getCalories(food, restaurant) {
+async function getCalories(food, restaurant) {
     const response = await fetch('https://indiscriminate-noiselessly-scarlette.ngrok-free.dev/calories?food=' + food + '&restaurant=' + restaurant, {
-    headers: {
-        'ngrok-skip-browser-warning': 'true'
-    }
-});
-    const data = await response.json();
-    return data.calories;
+        headers: { 'ngrok-skip-browser-warning': 'true' }
+    });
+    return await response.json();  
 }
 
-  async function displayFood(){
-
+async function displayFood() {
     const restaurant = document.getElementById("formName").value.trim();
     const food = document.getElementById("foodName").value.trim();
 
-    if (!(restaurant) || !(food)){
-      return 0;
-    }
+    if (!restaurant || !food) return;
 
     const displayInput = document.getElementById("displayInput");
-    const calories = await getCalories(food, restaurant);
+    const data = await getCalories(food, restaurant);  
+    const calories = data.calories;                     
+    
 
-    if (restaurant === "" || food === ""){
-      displayInput.textContent = "";
-      return 0;
-    }
-    else{
-        displayInput.textContent = `${restaurant} ${food} has ${calories} calories`;
-    } 
-
-
-
-  }
+    displayInput.textContent = restaurant + " " + food + " has " + calories + " calories";
+    document.getElementById("foodImage").src = data.image;
+}
 
 
 
