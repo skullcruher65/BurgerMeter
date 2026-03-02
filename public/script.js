@@ -146,3 +146,8 @@ const canvas = document.getElementById("burgerCanvas");
   setInterval(draw, 40);
 
 
+  // food and restaurant search
+
+  
+
+
