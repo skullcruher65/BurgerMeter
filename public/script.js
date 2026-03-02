@@ -92,15 +92,7 @@ async function displaySelection() {
 
     const weightInput = document.getElementById("fname");
     const weight = parseFloat(weightInput.value);
-    if (!isNaN(weight) && weight > 0){
-
-        const restaurant = document.getElementById("formName").value.trim();
-        const food = document.getElementById("foodName").value.trim();
-        const calories = await getCalories(food, restaurant);
-        const result = calculateReps(exercise, calories, weight);
-        document.getElementById("reps").textContent = result.value + " " + result.unit;
-        document.getElementById("calories").textContent = calories;
-    }
+   
 }
 
   
