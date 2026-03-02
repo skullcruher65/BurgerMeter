@@ -14,7 +14,7 @@ const exercises = [
   { name: "Pull-ups", met: 8.0, repsPerMinute: 8, img: './ExerciseImages/Pull-ups.jpg' },
   { name: "Lunges", met: 4.0, repsPerMinute: 16, img: './ExerciseImages/Lunges.jpg' },
   { name: "Sit-ups", met: 3.8, repsPerMinute: 25, img: './ExerciseImages/situps.png' },
-  { name: "Plank (seconds)", met: 3.5, repsPerMinute: 60, img: './ExerciseImages/Plank.jpg' },
+  { name: "Plank", met: 3.5, repsPerMinute: 60, img: './ExerciseImages/Plank.jpg' },
 ];
 
 
@@ -106,10 +106,26 @@ async function displaySelection() {
 
 function calculateReps(exercise, calories, weight) 
 {
-    if (exercise.name === "Plank (seconds)")
+    if (exercise.name === "Plank")
     {
       weight = weight / 2.205;
       let seconds = calories / (exercise.met * weight * 3.5 / 200 / 60);
+
+      if (seconds > 3600){
+
+        let hours = seconds/3600;
+
+        return {value: (Math.round(hours * 100))/100, unit: "hours"};
+
+  
+      }
+      else if (seconds > 60){
+        let minutes = seconds/60;
+        return {value: (Math.round(minutes * 100))/100, unit: "minutes"};
+      }
+
+
+    
       return { value: Math.round(seconds), unit: "seconds" };
     }
 
