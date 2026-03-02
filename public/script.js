@@ -56,7 +56,7 @@ async function tryCalculate() {
     const restaurant = document.getElementById("formName").value.trim();
     const food = document.getElementById("foodName").value.trim();
 
-    if (!exercise || isNaN(weight) || weight <= 0) return;
+    if (!exercise || isNaN(weight) || weight <= 0 || !food || !restaurant) return;
 
     const data = await getCalories(food, restaurant);
     const calories = data.calories;
@@ -92,15 +92,7 @@ async function displaySelection() {
 
     const weightInput = document.getElementById("fname");
     const weight = parseFloat(weightInput.value);
-    if (!isNaN(weight) && weight > 0){
-
-        const restaurant = document.getElementById("formName").value.trim();
-        const food = document.getElementById("foodName").value.trim();
-        const calories = await getCalories(food, restaurant);
-        const result = calculateReps(exercise, calories, weight);
-        document.getElementById("reps").textContent = result.value + " " + result.unit;
-        document.getElementById("calories").textContent = calories;
-    }
+   
 }
 
   
@@ -184,6 +176,11 @@ async function getCalories(food, restaurant) {
 }
 
 async function displayFood() {
+
+    var audio = document.getElementById("audioName");
+    audio.volume = 0.2;
+
+    audio.play();
     const restaurant = document.getElementById("formName").value.trim();
     const food = document.getElementById("foodName").value.trim();
 
