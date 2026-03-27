@@ -177,10 +177,10 @@ async function getCalories(food, restaurant) {
 
 async function displayFood() {
 
-    var audio = document.getElementById("audioName");
-    audio.volume = 0.2;
+    // var audio = document.getElementById("audioName");
+    // audio.volume = 0.2;
 
-    audio.play();
+    // audio.play();
     const restaurant = document.getElementById("formName").value.trim();
     const food = document.getElementById("foodName").value.trim();
 
